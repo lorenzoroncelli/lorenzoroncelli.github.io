@@ -1339,7 +1339,22 @@
                 }
             }, 100);
         });
-
+document.addEventListener('DOMContentLoaded', function() {
+    const typed = new Typed('#typed', {
+        strings: [
+            'Full-Stack Developer',
+            'UI/UX Enthusiast',
+            'Problem Solver',
+            'Tech Innovator'
+        ],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|'
+    });
+});
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1505,4 +1520,5 @@
     </script>
 </body>
 </html>
+
 
