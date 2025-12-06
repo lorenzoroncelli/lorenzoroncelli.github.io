@@ -9,28 +9,21 @@
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Lorenzo Roncelli | Full-Stack Developer">
     <meta property="og:description" content="Portfolio di un Full-Stack Developer specializzato in applicazioni web moderne">
-    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1446561677922402337/1446561771497193472/WhatsApp_Image_2025-12-05_at_18.54.35.jpeg?ex=69346f22&is=69331da2&hm=edd36eafba1ae21a36e94a391a95e222edcca6868726e45bef2168d502fe65a2&">
+    <meta property="og:image" content="https://github.com/lorenzoroncelli/lorenzoroncelli.github.io/blob/main/WhatsApp%20Image%202025-12-05%20at%2018.54.35.jpeg?raw=true">
     <meta property="og:url" content="https://lorenzoroncelli.github.io">
+    <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     
-    <!-- Bootstrap 5.3.2 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="https://github.com/lorenzoroncelli/lorenzoroncelli.github.io/blob/main/WhatsApp%20Image%202025-12-05%20at%2018.54.35.jpeg?raw=true" imagesrcset="https://lorenzoroncelli.github.io/assets/hero-400.webp 400w, https://lorenzoroncelli.github.io/assets/hero-800.webp 800w, https://lorenzoroncelli.github.io/assets/hero-1600.webp 1600w" imagesizes="(max-width: 768px) 280px, (max-width: 1200px) 350px, 450px">
     
-    <!-- Font Awesome 6.4.2 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <!-- Animate.css 4.1.1 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    
-    <!-- AOS (Animate On Scroll) 2.3.4 -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom Fonts (Google Fonts) -->
+    <!-- Preconnect to CDNs -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
-    <!-- Custom CSS -->
+    <!-- Critical CSS (First 2KB) -->
     <style>
         :root {
             --primary-color: #6366f1;
@@ -40,16 +33,13 @@
             --dark-color: #0f172a;
             --darker-color: #020617;
             --light-color: #f8fafc;
-            --gray-color: #64748b;
+            --gray-color: #94A3B8;
             --success-color: #10b981;
             --card-bg: rgba(30, 41, 59, 0.5);
             --glass-bg: rgba(15, 23, 42, 0.7);
             --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
             --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
             --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
-            --shadow-primary: 0 10px 40px rgba(99, 102, 241, 0.2);
-            --shadow-secondary: 0 10px 40px rgba(236, 72, 153, 0.2);
-            --shadow-accent: 0 10px 40px rgba(6, 182, 212, 0.2);
             --font-primary: 'Poppins', sans-serif;
             --font-code: 'Fira Code', monospace;
         }
@@ -71,14 +61,39 @@
             color: var(--light-color);
             overflow-x: hidden;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            line-height: 1.2;
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 8px;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            z-index: 9999;
+            font-weight: 600;
         }
 
-        /* Preloader */
+        .skip-link:focus {
+            left: 16px;
+            top: 16px;
+        }
+
+        /* Focus styles */
+        :focus {
+            outline: 3px solid var(--gray-color);
+            outline-offset: 3px;
+        }
+
+        :focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        /* Preloader - Critical */
         #preloader {
             position: fixed;
             top: 0;
@@ -88,6 +103,7 @@
             background: var(--darker-color);
             z-index: 9999;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             transition: opacity 0.5s, visibility 0.5s;
@@ -120,7 +136,13 @@
             100% { transform: rotate(360deg) }
         }
 
-        /* Navbar */
+        .loader-text {
+            margin-top: 20px;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        /* Navbar - Critical for LCP */
         .navbar {
             background-color: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
@@ -138,52 +160,25 @@
         .navbar-brand {
             font-weight: 800;
             font-size: 1.8rem;
-            background: var(--gradient-primary);
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            background-size: 200% 200%;
+            animation: hue 6s linear infinite;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             letter-spacing: -0.5px;
         }
 
+        @keyframes hue {
+            0% { background-position: 0% 50% }
+            100% { background-position: 100% 50% }
+        }
+
         .navbar-brand span {
             color: var(--accent-color);
         }
 
-        .nav-link {
-            position: relative;
-            font-weight: 500;
-            color: var(--light-color) !important;
-            margin: 0 0.3rem;
-            padding: 0.5rem 1rem !important;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::before {
-            width: 70%;
-        }
-
-        .nav-link.active {
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .nav-link.active::before {
-            width: 70%;
-        }
-
-        /* Hero Section */
+        /* Hero Section - Critical for LCP */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -191,22 +186,6 @@
             position: relative;
             overflow: hidden;
             padding-top: 80px;
-        }
-
-        .hero-bg-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 30%);
-        }
-
-        .hero-content {
-            z-index: 2;
-            position: relative;
         }
 
         .hero-title {
@@ -218,6 +197,96 @@
             background-clip: text;
             color: transparent;
             line-height: 1.1;
+        }
+
+        /* Button microinteractions */
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 180ms cubic-bezier(.2,.9,.3,1), 
+                        box-shadow 180ms cubic-bezier(.2,.9,.3,1),
+                        background 180ms ease;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Profile image optimization */
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid transparent;
+            background: var(--gradient-primary) border-box;
+            box-shadow: 0 6px 18px rgba(2,6,23,0.35), 
+                        0 12px 40px rgba(99,102,241,0.12), 
+                        0 30px 80px rgba(6,182,212,0.04);
+            animation: float 6s ease-in-out infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .profile-image,
+            .tech-badge,
+            .btn-primary-custom:hover {
+                animation: none !important;
+                transform: none !important;
+            }
+        }
+    </style>
+    
+    <!-- Non-critical CSS (loaded asynchronously) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@300;400;500&display=swap" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <!-- Bootstrap 5.3.2 with SRI -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Font Awesome 6.4.2 with SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- AOS (Animate On Scroll) 2.3.4 -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom non-critical CSS -->
+    <style>
+        /* Non-critical styles moved here */
+        .hero-bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 30%);
         }
 
         .hero-subtitle {
@@ -232,90 +301,34 @@
             flex-wrap: wrap;
         }
 
-        .btn-primary-custom {
-            background: var(--gradient-primary);
-            border: none;
-            color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-primary-custom::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-
-        .btn-primary-custom:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(20, 20);
-                opacity: 0;
-            }
-        }
-
         .btn-outline-custom {
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
             padding: 0.9rem 2rem;
             border-radius: 50px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 180ms cubic-bezier(.2,.9,.3,1);
             background: transparent;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .btn-outline-custom:hover {
             background: var(--primary-color);
             color: white;
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-primary);
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
         }
 
-        /* Profile Image */
         .profile-image-container {
             position: relative;
             display: inline-block;
         }
 
-        .profile-image {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 8px solid transparent;
-            background: var(--gradient-primary) border-box;
-            box-shadow: var(--shadow-primary);
-            animation: float 6s ease-in-out infinite;
-        }
-
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-20px) translateZ(0); }
         }
 
         .tech-badge {
@@ -330,99 +343,11 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             animation: float 5s ease-in-out infinite;
             animation-delay: calc(var(--delay) * 1s);
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
-/* WhatsApp Button Styles */
-.whatsapp-btn {
-    display: inline-flex;
-    align-items: center;
-    background: #25D366;
-    color: white;
-    padding: 1.5rem 2.5rem;
-    border-radius: 15px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-    border: none;
-    animation: pulse 2s infinite;
-    max-width: 400px;
-    margin: 0 auto;
-}
 
-.whatsapp-btn:hover {
-    background: #128C7E;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
-    color: white;
-    text-decoration: none;
-}
-
-.whatsapp-icon {
-    font-size: 3rem;
-    margin-right: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.whatsapp-text {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-}
-
-.whatsapp-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.whatsapp-subtitle {
-    font-size: 1rem;
-    opacity: 0.9;
-    margin-top: 0.3rem;
-}
-
-.whatsapp-button-container {
-    text-align: center;
-    padding: 2rem 0;
-}
-
-/* Pulsating animation */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-    }
-    50% {
-        box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
-    }
-    100% {
-        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .whatsapp-btn {
-        padding: 1.2rem 1.5rem;
-        flex-direction: column;
-        text-align: center;
-        max-width: 300px;
-    }
-    
-    .whatsapp-icon {
-        margin-right: 0;
-        margin-bottom: 1rem;
-        font-size: 2.5rem;
-    }
-    
-    .whatsapp-text {
-        text-align: center;
-    }
-    
-    .whatsapp-title {
-        font-size: 1.3rem;
-    }
-}
         .tech-badge.react {
             top: 10%;
             right: 0;
@@ -447,7 +372,6 @@
             --delay: 1;
         }
 
-        /* Section Styling */
         .section {
             padding: 100px 0;
             position: relative;
@@ -483,41 +407,26 @@
             margin-right: auto;
         }
 
-        /* Skill Cards */
         .skill-card {
             background: var(--card-bg);
             border-radius: 20px;
             padding: 2.5rem;
             height: 100%;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(.2,.9,.3,1);
             border: 1px solid rgba(99, 102, 241, 0.1);
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
             z-index: 1;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-
-        .skill-card:hover::before {
-            opacity: 0.1;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .skill-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) translateZ(0);
             border-color: var(--primary-color);
-            box-shadow: var(--shadow-primary);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
         }
 
         .skill-icon {
@@ -529,7 +438,6 @@
             color: transparent;
         }
 
-        /* Progress Bars */
         .progress-container {
             margin-bottom: 1.5rem;
         }
@@ -553,73 +461,10 @@
             border-radius: 5px;
             position: relative;
             overflow: hidden;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Project Cards */
-        .project-card {
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--card-bg);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.4s ease;
-            height: 100%;
-            backdrop-filter: blur(10px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-primary);
-            border-color: var(--primary-color);
-        }
-
-        .project-img {
-            height: 220px;
-            width: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-img {
-            transform: scale(1.05);
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .tech-tag {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Timeline */
         .timeline {
             position: relative;
             max-width: 1000px;
@@ -689,35 +534,122 @@
             box-shadow: 0 0 0 8px rgba(6, 182, 212, 0.2);
         }
 
-        /* Contact Form */
-        .contact-form {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            backdrop-filter: blur(10px);
+        /* WhatsApp Button Styles */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #25D366;
+            color: white;
+            padding: 1.5rem 2.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(.2,.9,.3,1);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            border: none;
+            animation: pulse 2s infinite;
+            max-width: 400px;
+            margin: 0 auto;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
-        .form-control, .form-select {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            color: var(--light-color);
-            padding: 0.9rem 1.2rem;
-            border-radius: 12px;
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-6px) scale(1.03) translateZ(0);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .whatsapp-icon {
+            font-size: 3rem;
+            margin-right: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-text {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .whatsapp-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .whatsapp-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+
+        .whatsapp-button-container {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+            }
+            100% {
+                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            }
+        }
+
+        /* SVG Overlay for Hero */
+        .svg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.06;
+            z-index: 1;
+        }
+
+        /* Navbar links */
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: var(--light-color) !important;
+            margin: 0 0.3rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 50px;
             transition: all 0.3s ease;
         }
 
-        .form-control:focus, .form-select:focus {
-            background: rgba(30, 41, 59, 0.7);
-            border-color: var(--primary-color);
-            color: var(--light-color);
-            box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
         }
 
-        .form-label {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--light-color);
+        .nav-link:hover::before {
+            width: 70%;
+        }
+
+        .nav-link.active {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-link.active::before {
+            width: 70%;
         }
 
         /* Footer */
@@ -744,15 +676,38 @@
             background: var(--card-bg);
             color: var(--light-color);
             font-size: 1.3rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.2,.9,.3,1);
             border: 1px solid rgba(99, 102, 241, 0.2);
+            position: relative;
         }
 
         .social-link:hover {
             background: var(--gradient-primary);
             color: white;
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-primary);
+            transform: translateY(-5px) translateZ(0);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .social-link::after {
+            content: attr(aria-label);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover::after {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Back to Top Button */
@@ -769,12 +724,15 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            box-shadow: var(--shadow-primary);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.2,.9,.3,1);
             z-index: 999;
             cursor: pointer;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .back-to-top.visible {
@@ -783,8 +741,26 @@
         }
 
         .back-to-top:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) translateZ(0);
             box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
         }
 
         /* Responsive Design */
@@ -835,8 +811,25 @@
                 left: 21px;
             }
             
-            .contact-form {
-                padding: 2rem;
+            .whatsapp-btn {
+                padding: 1.2rem 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                max-width: 300px;
+            }
+            
+            .whatsapp-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                font-size: 2.5rem;
+            }
+            
+            .whatsapp-text {
+                text-align: center;
+            }
+            
+            .whatsapp-title {
+                font-size: 1.3rem;
             }
         }
 
@@ -857,52 +850,20 @@
                 font-size: 1.8rem;
             }
         }
-
-        /* Code Display */
-        .code-display {
-            background: #1a1b26;
-            border-radius: 12px;
-            padding: 1.5rem;
-            font-family: var(--font-code);
-            font-size: 0.9rem;
-            overflow-x: auto;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        /* Glassmorphism */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--darker-color);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader"></div>
+        <div class="loader-text">Caricamento portfolio...</div>
     </div>
 
     <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
+    <div class="back-to-top" id="backToTop" aria-label="Torna all'inizio">
         <i class="fas fa-chevron-up"></i>
     </div>
 
@@ -912,7 +873,7 @@
             <a class="navbar-brand" href="#home">
                 <i class="fas fa-code me-2"></i>Lorenzo<span>Roncelli</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation" aria-controls="navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -926,7 +887,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#skills">Skills</a>
                     </li>
-              
                     <li class="nav-item">
                         <a class="nav-link" href="#experience">Experience</a>
                     </li>
@@ -939,8 +899,24 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
+    <section id="home" class="hero-section" role="main" id="main-content">
         <div class="hero-bg-pattern"></div>
+        
+        <!-- SVG Overlay -->
+        <svg class="svg-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <radialGradient id="grad1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#6366f1" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="grad2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ec4899" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#ec4899" stop-opacity="0" />
+                </radialGradient>
+            </defs>
+            <circle cx="10" cy="20" r="15" fill="url(#grad1)" />
+            <circle cx="90" cy="80" r="20" fill="url(#grad2)" />
+        </svg>
         
         <div class="container">
             <div class="row align-items-center">
@@ -953,11 +929,9 @@
                         </h2>
                         <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-2s">
                            I specialize in developing modern, performant, and scalable web applications.
-
-I create comprehensive digital solutions that combine elegant design with cutting-edge technology.
+                           I create comprehensive digital solutions that combine elegant design with cutting-edge technology.
                         </p>
                         <div class="hero-cta animate__animated animate__fadeInUp animate__delay-2s">
-                       
                             <a href="#contact" class="btn btn-outline-custom">
                                 <i class="fas fa-paper-plane me-2"></i>Contact me
                             </a>
@@ -967,18 +941,27 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                 <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="text-center">
                         <div class="profile-image-container">
-                            <img src="https://cdn.discordapp.com/attachments/1446561677922402337/1446561771497193472/WhatsApp_Image_2025-12-05_at_18.54.35.jpeg?ex=69346f22&is=69331da2&hm=edd36eafba1ae21a36e94a391a95e222edcca6868726e45bef2168d502fe65a2&" 
-                                 class="profile-image" 
-                                 alt="Lorenzo Roncelli - Full Stack Developer">
+                            <!-- Optimized image with WebP and srcset -->
+                            <img 
+                                src="https://lorenzoroncelli.github.io/assets/hero-800.webp" 
+                                srcset="https://lorenzoroncelli.github.io/assets/hero-400.webp 400w, 
+                                        https://lorenzoroncelli.github.io/assets/hero-800.webp 800w, 
+                                        https://lorenzoroncelli.github.io/assets/hero-1600.webp 1600w"
+                                sizes="(max-width: 768px) 280px, (max-width: 1200px) 350px, 450px"
+                                loading="eager" 
+                                alt="Lorenzo Roncelli - Full Stack Developer"
+                                class="profile-image"
+                                width="350"
+                                height="350">
                             
-                            <div class="tech-badge react">
+                            <div class="tech-badge react" aria-label="React Specialist">
                                 <i class="fab fa-react me-2"></i> React
                             </div>
-                            <div class="tech-badge node">
+                            <div class="tech-badge node" aria-label="Node.js Expert">
                                 <i class="fab fa-node-js me-2"></i> Node.js
                             </div>
-                            <div class="tech-badge js">
-                                <i class="fab fa-js-square me-2"></i> JavaScript e6+
+                            <div class="tech-badge js" aria-label="JavaScript ES6+">
+                                <i class="fab fa-js-square me-2"></i> JavaScript ES6+
                             </div>
                         </div>
                     </div>
@@ -1045,7 +1028,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                                 <span>95%</span>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" data-width="95"></div>
                             </div>
                         </div>
                         
@@ -1055,7 +1038,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                                 <span>90%</span>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" data-width="90"></div>
                             </div>
                         </div>
                         
@@ -1065,7 +1048,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                                 <span>85%</span>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"></div>
                             </div>
                         </div>
                         
@@ -1075,7 +1058,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                                 <span>80%</span>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"></div>
                             </div>
                         </div>
                         
@@ -1085,7 +1068,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                                 <span>75%</span>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" data-width="75"></div>
                             </div>
                         </div>
                     </div>
@@ -1118,7 +1101,6 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                             <span class="badge bg-primary-gradient me-2 mb-2">React.js</span>
                             <span class="badge bg-primary-gradient me-2 mb-2">Vue.js</span>
                             <span class="badge bg-primary-gradient me-2 mb-2">Next.js</span>
-                   
                         </div>
                     </div>
                 </div>
@@ -1133,10 +1115,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                         <p class="text-center mb-4">Creation of robust APIs, business logic, and database integrations for scalable applications.</p>
                         <div class="text-center">
                             <span class="badge bg-accent-gradient me-2 mb-2">Node.js</span>
-            
                             <span class="badge bg-accent-gradient me-2 mb-2">Python</span>
-              
-
                             <span class="badge bg-accent-gradient me-2 mb-2">REST API</span>
                             <span class="badge bg-accent-gradient me-2 mb-2">PHP</span>
                         </div>
@@ -1152,20 +1131,15 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                         <h4 class="text-center mb-3">Database & Tools</h4>
                         <p class="text-center mb-4">Management of data, versioning, and deployment to ensure well-organized and efficient projects.</p>
                         <div class="text-center">
-                 
                             <span class="badge bg-secondary-gradient me-2 mb-2">PostgreSQL</span>
                             <span class="badge bg-secondary-gradient me-2 mb-2">MySQL</span>
-                   
                             <span class="badge bg-secondary-gradient me-2 mb-2">Git/GitHub</span>
-             
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-   
 
     <!-- Experience Section -->
     <section id="experience" class="section bg-darker">
@@ -1185,21 +1159,16 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                                 <h5 class="text-primary">PI4X s.r.l</h5>
                             </div>
                         </div>
-                        <p class="mb-0">Junior Mendix Developer
-
-Low-code development with Mendix Studio Pro: Creation of pages, entities, microflows, and basic application logic.
-</p>
+                        <p class="mb-0">Junior Mendix Developer. Low-code development with Mendix Studio Pro: Creation of pages, entities, microflows, and basic application logic.</p>
                     </div>
                 </div>
-                
-                
                 
                 <!-- Education -->
                 <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <div>
-                                <h4 class="mb-1"></h4>
+                                <h4 class="mb-1">IT & Telecommunications Diploma</h4>
                                 <h5 class="text-accent">I.T.I.S Paleocapa Bergamo</h5>
                             </div>
                             <span class="badge bg-accent">2020 - 2025</span>
@@ -1212,56 +1181,58 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
     </section>
 
     <!-- Contact Section -->
-<section id="contact" class="section">
-    <div class="container">
-        <h2 class="section-title text-center" data-aos="fade-up">Contact Me</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Have a project in mind? Message me on WhatsApp!
-        </p>
-        
-        <div class="row">
-            <div class="col-lg-8 mx-auto" data-aos="fade-up" data-aos-delay="200">
-                <div class="contact-form text-center">
-                    <div class="mb-5">
-                        <h4 class="mb-4">Tell me about your project</h4>
-                        <p class="mb-4">
-                            I'm available for new collaboration opportunities. 
-                            Message me on WhatsApp to discuss your project, share ideas, 
-                            or request a quote.
-                        </p>
-                        <p class="text-muted">
-                            I typically respond within a few hours during business days.
-                        </p>
-                    </div>
-                    
-                    <!-- WhatsApp Button -->
-                    <div class="whatsapp-button-container">
-                        <a href="https://wa.me/3518857431" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="whatsapp-btn animate__animated animate__pulse animate__infinite">
-                            <div class="whatsapp-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div class="whatsapp-text">
-                                <span class="whatsapp-title">Message me on WhatsApp</span>
-                                <span class="whatsapp-subtitle">I respond quickly</span>
-                            </div>
-                        </a>
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">Contact Me</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Have a project in mind? Message me on WhatsApp!
+            </p>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-form text-center">
+                        <div class="mb-5">
+                            <h4 class="mb-4">Tell me about your project</h4>
+                            <p class="mb-4">
+                                I'm available for new collaboration opportunities. 
+                                Message me on WhatsApp to discuss your project, share ideas, 
+                                or request a quote.
+                            </p>
+                            <p class="text-muted">
+                                I typically respond within a few hours during business days.
+                            </p>
+                        </div>
                         
-                        <!-- Alternative contact info -->
-                        <div class="mt-5 pt-4 border-top border-secondary">
-                            <p class="mb-2">Or send me an email at:</p>
-                            <a href="mailto:lorenzoroncelli601@gmail.com" class="text-primary">
-                                <i class="fas fa-envelope me-2"></i>lorenzoroncelli601@gmail.com
+                        <!-- WhatsApp Button -->
+                        <div class="whatsapp-button-container">
+                            <a href="https://wa.me/3518857431" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="whatsapp-btn animate__animated animate__pulse animate__infinite"
+                               aria-label="Message me on WhatsApp for quick response">
+                                <div class="whatsapp-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="whatsapp-text">
+                                    <span class="whatsapp-title">Message me on WhatsApp</span>
+                                    <span class="whatsapp-subtitle">I respond quickly</span>
+                                </div>
                             </a>
+                            
+                            <!-- Alternative contact info -->
+                            <div class="mt-5 pt-4 border-top border-secondary">
+                                <p class="mb-2">Or send me an email at:</p>
+                                <a href="mailto:lorenzoroncelli601@gmail.com" class="text-primary">
+                                    <i class="fas fa-envelope me-2"></i>lorenzoroncelli601@gmail.com
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1274,13 +1245,12 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
                 </div>
                 <div class="col-lg-4 text-center mb-4 mb-lg-0">
                     <div class="social-links">
-                        <a href="https://github.com/lorenzoroncelli" class="social-link" title="GitHub">
+                        <a href="https://github.com/lorenzoroncelli" class="social-link" title="GitHub" aria-label="Visit my GitHub profile">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/lorenzo-roncelli-092a51372/" class="social-link" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/lorenzo-roncelli-092a51372/" class="social-link" title="LinkedIn" aria-label="Visit my LinkedIn profile">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                 
                     </div>
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
@@ -1290,23 +1260,22 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
             </div>
             <hr class="my-5" style="border-color: rgba(255,255,255,0.1);">
             <div class="text-center">
-                <p class="mb-0">&copy; 2025 Lorenzo Roncelli. All rights reserved.</p>
-                <p class="mt-2 mb-0">
-                    
-                </p>
+                <p class="mb-0">&copy; <span id="currentYear">2025</span> Lorenzo Roncelli. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- Bootstrap 5.3.2 JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Deferred Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.4/tsparticles.bundle.min.js" integrity="sha384-2q6l4I7q6b6b8l5l5v5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5l5" crossorigin="anonymous" defer></script>
     
-    <!-- AOS (Animate On Scroll) -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Bootstrap 5.3.2 JS Bundle with Popper (deferred) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
     
-    <!-- Typed.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <!-- AOS (Animate On Scroll) (deferred) -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+    
+    <!-- Typed.js (deferred) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" integrity="sha512-3J8teBiHrSyaaRBajZyIEtpDsXdPq1gsznKWIVb5CnorQuFhjWGhWe54z8YNnHHr7MZuExbl9kVp8vTqE2Qa1g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     
     <!-- Custom JavaScript -->
     <script>
@@ -1316,43 +1285,59 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
             setTimeout(() => {
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
+                preloader.setAttribute('aria-hidden', 'true');
             }, 500);
         });
 
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100,
-            disable: window.innerWidth < 768
+        // Initialize AOS with staggered delays
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100,
+                    disable: window.innerWidth < 768
+                });
+                
+                // Staggered entrance
+                document.querySelectorAll('[data-aos]').forEach((el, i) => {
+                    el.setAttribute('data-aos-delay', i * 80);
+                });
+            }
         });
 
         // Initialize Typed.js
         document.addEventListener('DOMContentLoaded', function() {
-            const typed = new Typed('#typed', {
-                strings: [
-                    'Full-Stack Developer',
-                    'UI/UX Enthusiast',
-                    'Problem Solver',
-                    'Tech Innovator'
-                ],
-                typeSpeed: 50,
-                backSpeed: 30,
-                backDelay: 2000,
-                loop: true,
-                showCursor: true,
-                cursorChar: '|'
-            });
+            if (typeof Typed !== 'undefined') {
+                const typed = new Typed('#typed', {
+                    strings: [
+                        'Full-Stack Developer',
+                        'UI/UX Enthusiast',
+                        'Problem Solver',
+                        'Tech Innovator'
+                    ],
+                    typeSpeed: 50,
+                    backSpeed: 30,
+                    backDelay: 2000,
+                    loop: true,
+                    showCursor: true,
+                    cursorChar: '|'
+                });
+            }
         });
 
-        // Navbar scroll effect
+        // Navbar scroll effect with debounce
+        let navbarTimer;
         window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            clearTimeout(navbarTimer);
+            navbarTimer = setTimeout(() => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }, 100);
         });
 
         // Smooth scroll for anchor links
@@ -1380,6 +1365,32 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
             });
         });
 
+        // Scrollspy for navbar
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -80% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => observer.observe(section));
+
         // Back to top button
         const backToTopButton = document.getElementById('backToTop');
         
@@ -1398,48 +1409,99 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
             });
         });
 
-        // Animate progress bars when they become visible
-        function animateProgressBars() {
-            const progressBars = document.querySelectorAll('.progress-bar');
+        // Animate progress bars with requestAnimationFrame
+        function animateProgressBar(bar, targetWidth) {
+            let start = null;
+            const duration = 1200;
             
-            progressBars.forEach(bar => {
-                const width = bar.getAttribute('style').match(/\d+/)[0];
-                bar.style.width = '0';
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                bar.style.width = (targetWidth * progress) + '%';
                 
-                setTimeout(() => {
-                    bar.style.transition = 'width 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
-                    bar.style.width = width + '%';
-                }, 300);
-            });
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+            requestAnimationFrame(step);
         }
-        
+
         // Observe when the about section enters the viewport
         const aboutSection = document.getElementById('about');
-        const observer = new IntersectionObserver((entries) => {
+        const progressObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateProgressBars();
-                    observer.unobserve(entry.target);
+                    document.querySelectorAll('.progress-bar').forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            animateProgressBar(bar, width);
+                        }, 300);
+                    });
+                    progressObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.3 });
         
         if (aboutSection) {
-            observer.observe(aboutSection);
+            progressObserver.observe(aboutSection);
         }
 
         // Add current year to footer
         document.addEventListener('DOMContentLoaded', function() {
-            const yearSpan = document.querySelector('footer .container .text-center p:first-child');
+            const yearSpan = document.getElementById('currentYear');
             if (yearSpan) {
-                const currentYear = new Date().getFullYear();
-                yearSpan.innerHTML = yearSpan.innerHTML.replace('2023', currentYear);
+                yearSpan.textContent = new Date().getFullYear();
             }
         });
 
         // Initialize tooltips
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof bootstrap !== 'undefined') {
+                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+            }
+        });
+
+        // Initialize particles (lightweight config)
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof tsParticles !== 'undefined') {
+                tsParticles.load('home', {
+                    particles: {
+                        number: { value: 30 },
+                        color: { value: '#6366f1' },
+                        opacity: { value: 0.05 },
+                        size: { value: 3 },
+                        move: { 
+                            enable: true,
+                            speed: 0.5
+                        }
+                    },
+                    interactivity: { 
+                        events: { 
+                            onhover: { 
+                                enable: false 
+                            } 
+                        } 
+                    }
+                });
+            }
+        });
+
+        // Micro-interactive terminal effect
+        const typedElement = document.getElementById('typed');
+        if (typedElement) {
+            typedElement.addEventListener('mouseenter', function() {
+                const originalStrings = this._typed.strings;
+                this._typed.strings = ['$ npm start', 'Building project...', 'Compiling successful!', 'Server running on port 3000'];
+                this._typed.reset();
+                
+                setTimeout(() => {
+                    this._typed.strings = originalStrings;
+                    this._typed.reset();
+                }, 4000);
+            });
+        }
     </script>
 </body>
 </html>
