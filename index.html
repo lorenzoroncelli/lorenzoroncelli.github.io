@@ -8,6 +8,7 @@
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Lorenzo Roncelli | Full-Stack Developer">
+    <meta property="og:description" content="Portfolio di un Full-Stack Developer specializzato in applicazioni web moderne">
     <meta property="og:image" content="https://cdn.discordapp.com/attachments/1446561677922402337/1446561771497193472/WhatsApp_Image_2025-12-05_at_18.54.35.jpeg?ex=69346f22&is=69331da2&hm=edd36eafba1ae21a36e94a391a95e222edcca6868726e45bef2168d502fe65a2&">
     <meta property="og:url" content="https://lorenzoroncelli.github.io">
     <meta name="twitter:card" content="summary_large_image">
@@ -23,12 +24,6 @@
     
     <!-- AOS (Animate On Scroll) 2.3.4 -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    
-    <!-- Splide.js (Carousel) 4.1.4 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    
-    <!-- Prism.js (Syntax Highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
     
     <!-- Custom Fonts (Google Fonts) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -863,16 +858,6 @@
             }
         }
 
-        /* Particles Container */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
         /* Code Display */
         .code-display {
             background: #1a1b26;
@@ -956,7 +941,6 @@
     <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-bg-pattern"></div>
-        <div id="particles-js"></div>
         
         <div class="container">
             <div class="row align-items-center">
@@ -983,9 +967,9 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                 <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="text-center">
                         <div class="profile-image-container">
-                            <img src="https://raw.githubusercontent.com/lorenzoroncelli/lorenzoroncelli.github.io/refs/heads/main/WhatsApp%20Image%202025-12-05%20at%2018.54.35.jpeg" 
+                            <img src="https://cdn.discordapp.com/attachments/1446561677922402337/1446561771497193472/WhatsApp_Image_2025-12-05_at_18.54.35.jpeg?ex=69346f22&is=69331da2&hm=edd36eafba1ae21a36e94a391a95e222edcca6868726e45bef2168d502fe65a2&" 
                                  class="profile-image" 
-                                 alt="Marco Rossi - Full Stack Developer">
+                                 alt="Lorenzo Roncelli - Full Stack Developer">
                             
                             <div class="tech-badge react">
                                 <i class="fab fa-react me-2"></i> React
@@ -1053,7 +1037,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                 
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
                     <div class="skill-card">
-                        <h4 class="mb-4">My specializations</h4>
+                        <h4 class="mb-4">My Specializations</h4>
                         
                         <div class="progress-container">
                             <div class="progress-label">
@@ -1152,8 +1136,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
             
                             <span class="badge bg-accent-gradient me-2 mb-2">Python</span>
               
-                     
-                  
+
                             <span class="badge bg-accent-gradient me-2 mb-2">REST API</span>
                             <span class="badge bg-accent-gradient me-2 mb-2">PHP</span>
                         </div>
@@ -1198,7 +1181,7 @@ I create comprehensive digital solutions that combine elegant design with cuttin
                     <div class="timeline-content">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <div>
-                                <h4 class="mb-1">Junior mendix developer</h4>
+                                <h4 class="mb-1">Junior Mendix Developer</h4>
                                 <h5 class="text-primary">PI4X s.r.l</h5>
                             </div>
                         </div>
@@ -1269,7 +1252,7 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
                         <!-- Alternative contact info -->
                         <div class="mt-5 pt-4 border-top border-secondary">
                             <p class="mb-2">Or send me an email at:</p>
-                            <a href="mailto:hello@marcorossi.dev" class="text-primary">
+                            <a href="mailto:lorenzoroncelli601@gmail.com" class="text-primary">
                                 <i class="fas fa-envelope me-2"></i>lorenzoroncelli601@gmail.com
                             </a>
                         </div>
@@ -1325,15 +1308,6 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
     <!-- Typed.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- Splide.js (Carousel) -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    
-    <!-- Prism.js (Syntax Highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    
     <!-- Custom JavaScript -->
     <script>
         // Preloader
@@ -1370,8 +1344,6 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
                 cursorChar: '|'
             });
         });
-
-        
 
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -1426,96 +1398,6 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
             });
         });
 
-        // Form validation and submission
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Remove previous validation states
-            const formInputs = contactForm.querySelectorAll('.form-control');
-            formInputs.forEach(input => {
-                input.classList.remove('is-invalid', 'is-valid');
-            });
-            
-            // Check form validity
-            let formIsValid = true;
-            
-            // Validate name
-            const nameInput = document.getElementById('name');
-            if (!nameInput.value.trim()) {
-                nameInput.classList.add('is-invalid');
-                formIsValid = false;
-            } else {
-                nameInput.classList.add('is-valid');
-            }
-            
-            // Validate email
-            const emailInput = document.getElementById('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value.trim())) {
-                emailInput.classList.add('is-invalid');
-                formIsValid = false;
-            } else {
-                emailInput.classList.add('is-valid');
-            }
-            
-            // Validate subject
-            const subjectInput = document.getElementById('subject');
-            if (!subjectInput.value.trim()) {
-                subjectInput.classList.add('is-invalid');
-                formIsValid = false;
-            } else {
-                subjectInput.classList.add('is-valid');
-            }
-            
-            // Validate message
-            const messageInput = document.getElementById('message');
-            if (!messageInput.value.trim()) {
-                messageInput.classList.add('is-invalid');
-                formIsValid = false;
-            } else {
-                messageInput.classList.add('is-valid');
-            }
-            
-            // If form is valid, show success message
-            if (formIsValid) {
-                // In a real application, you would send the form data to a server here
-                // For demo purposes, we'll just show an alert
-                
-                // Create a sweet alert style notification
-                const alertDiv = document.createElement('div');
-                alertDiv.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
-                alertDiv.style.zIndex = '9999';
-                alertDiv.innerHTML = `
-                    <strong>Successo!</strong> Il tuo messaggio è stato inviato. Ti risponderò al più presto.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                `;
-                
-                document.body.appendChild(alertDiv);
-                
-                // Auto remove alert after 5 seconds
-                setTimeout(() => {
-                    alertDiv.classList.remove('show');
-                    setTimeout(() => {
-                        if (alertDiv.parentNode) {
-                            alertDiv.parentNode.removeChild(alertDiv);
-                        }
-                    }, 300);
-                }, 5000);
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Remove validation classes after reset
-                setTimeout(() => {
-                    formInputs.forEach(input => {
-                        input.classList.remove('is-valid');
-                    });
-                }, 3000);
-            }
-        });
-
         // Animate progress bars when they become visible
         function animateProgressBars() {
             const progressBars = document.querySelectorAll('.progress-bar');
@@ -1561,6 +1443,3 @@ Low-code development with Mendix Studio Pro: Creation of pages, entities, microf
     </script>
 </body>
 </html>
-
-
-
